@@ -59,7 +59,14 @@
 	}
 	resultat.Add(" Uppgift 23: " + String.Join(", ", tioFödelsedagar )); 
 
-
+	// 24
+	int ålder = 16;
+	List<string> skottår = new List<string>();
+	int counter = 1; 
+	while(ålder < 40){
+		if(DateTime.IsLeapYear(2008 + ålder) ){ 			skottår.Add("" + (2008 + ålder));		}
+			}
+	resultat.Add(" Uppgift 24: " + String.Join(", ", skottår));
 
 	//Uppgift 25
 	// Hitta först nästa 13. i månaden
@@ -77,8 +84,7 @@
 	}
 	resultat.Add("Uppgift 25 : " + KommandeFem13fredagar);
 
-	// 24 
-	int ålder = 16; 
+	 
 
 }
 
