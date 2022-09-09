@@ -1,0 +1,91 @@
+﻿@page
+@model ED_Razor_Test_01.Pages.OmDatumModel
+
+<style>
+
+	ul { 
+	margin 20px auto; 
+	display : inline-block;
+	}
+
+	li {
+		padding: 10px 20px;
+	 }
+
+	.resultat li:nth-child(2n+1) {
+		background-color : orange; 
+	}
+
+</style>
+@{
+
+	List<string> resultat = new List<string>(); 
+	DateTime idag = DateTime.Now;
+
+
+	resultat.Add("Idag är det " + idag.ToString());
+
+	resultat.Add("Och om tre dagar är det den " 
+						+ idag.AddDays(3).ToShortDateString());
+
+	// Uppgift 20
+	DateTime studenten = new DateTime(2023, 6, 16);
+	resultat.Add("Uppgift 20a : Studenten faller " + studenten.Year 
+						+ " på en " + studenten.DayOfWeek.ToString() );
+	resultat.Add("Uppgift 20b : Och den är den " + studenten.DayOfYear + " dag ");
+
+
+	// Uppgift 21
+	int antalDagarAktuelltÅr = (DateTime.IsLeapYear(idag.Year)) ? 366 : 365; 
+	int rest_i_år = antalDagarAktuelltÅr - idag.DayOfYear;
+	resultat.Add("Uppgift 21 : Det är " + (studenten.DayOfYear + rest_i_år) + " dagar till studenten (" + studenten.ToShortDateString());
+
+
+	// Uppgift 22
+	string fester = ""; 
+	for(int d = 250; d > 49; d -= 50){
+		fester += studenten.AddDays(-d).ToShortDateString() + "  ";  
+	}
+	resultat.Add("Uppgift 22 : " + fester);
+
+
+	// Uppgift 23
+	DateTime birthday = new DateTime(2022, 03, 14);
+
+	List<string> tioFödelsedagar = new List<string>(); 
+	for(int år = 1; år < 11; år++){
+		tioFödelsedagar.Add(birthday.AddYears(år).ToShortDateString());
+
+	}
+	resultat.Add(" Uppgift 23: " + String.Join(", ", tioFödelsedagar )); 
+
+
+
+	//Uppgift 25
+	// Hitta först nästa 13. i månaden
+	DateTime trettonde = new DateTime(idag.Year, idag.Month, 13);
+	if (idag.Day > 13) trettonde = trettonde.AddMonths(1);  // Kolla om 13 har varit i pågående månad. 
+
+	int antal = 0;
+	string KommandeFem13fredagar = ""; 
+	while(antal < 5 ){
+		if(trettonde.DayOfWeek == DayOfWeek.Friday) {
+			KommandeFem13fredagar += trettonde.ToShortDateString() + ",  ";
+			antal++; 
+		}
+		trettonde = trettonde.AddMonths(1); 
+	}
+	resultat.Add("Uppgift 25 : " + KommandeFem13fredagar);
+
+	// 24 
+	int ålder = 16; 
+
+}
+
+
+<h2> Resultat</h2>
+<ul class="resultat">
+@foreach(string res in resultat){
+	<li> @res</li>
+}
+</ul>
