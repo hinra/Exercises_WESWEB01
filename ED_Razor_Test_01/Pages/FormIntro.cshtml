@@ -36,14 +36,14 @@
 
 @{
 
-	if (HttpMethods.IsGet(Request.Method))
+	if (Request.Method == "GET")
 	{
 		<p>Det var en sk <i>GET-Request</i></p>
 
 
 	}
 
-	if (HttpMethods.IsPost(Request.Method))
+	if (Request.Method == "POST")
 	{
 		string Skola = Request.Form["skola"];
 		string ElevensNamn = Request.Form["namn"];
