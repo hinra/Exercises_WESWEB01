@@ -1,0 +1,56 @@
+﻿@page
+@model ED_Razor_Test_01.Pages.FormIntroModel
+@{
+}
+
+<style>
+	.simpleform {
+		width: 400px;
+		margin: 20px auto; 
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		
+	}
+
+	.simpleform label {
+		padding: 20px 10px; 
+	}
+
+	.simpleform input {
+		margin: 5px auto; 
+	}
+</style>
+
+
+<h1>Formulär med Post</h1>
+<form action="" method="post" class="simpleform">
+	<label for="school">Skolans namn:</label>
+	<input type="text" id="school" name="skola" value="" />
+	
+	<label for="namn">Namn:</label>
+	<input type="text" id="namn" name="namn" value="" />
+	
+	<input type="submit" value="Skicka" />
+</form>
+<hr/>
+
+@{
+
+	if (HttpMethods.IsGet(Request.Method))
+	{
+		<p>Det var en sk <i>GET-Request</i></p>
+
+
+	}
+
+	if (HttpMethods.IsPost(Request.Method))
+	{
+		string Skola = Request.Form["skola"];
+		string ElevensNamn = Request.Form["namn"];
+		
+
+	<p>Det var en sk <i>POST-Request</i></p>
+	<p>Du heter @ElevensNamn och går på @Skola</p>
+	}
+}
+

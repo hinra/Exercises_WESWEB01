@@ -4,7 +4,7 @@
 <style>
 
 	ul { 
-	margin 20px auto; 
+	margin: 20px auto; 
 	display : inline-block;
 	}
 
@@ -62,10 +62,11 @@
 	// 24
 	int ålder = 16;
 	List<string> skottår = new List<string>();
-	int counter = 1; 
+
 	while(ålder < 40){
 		if(DateTime.IsLeapYear(2008 + ålder) ){ 			skottår.Add("" + (2008 + ålder));		}
-			}
+	ålder++; 		
+	}
 	resultat.Add(" Uppgift 24: " + String.Join(", ", skottår));
 
 	//Uppgift 25
