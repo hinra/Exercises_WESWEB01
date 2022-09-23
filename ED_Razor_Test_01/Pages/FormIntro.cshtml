@@ -1,6 +1,7 @@
 ﻿@page
 @model ED_Razor_Test_01.Pages.FormIntroModel
 @{
+
 }
 
 <style>
@@ -33,12 +34,16 @@
 	<input type="submit" value="Skicka" />
 </form>
 <hr/>
+@Url.Action()
 
 @{
+
+
 
 	if (Request.Method == "GET")
 	{
 		<p>Det var en sk <i>GET-Request</i></p>
+		 
 
 
 	}

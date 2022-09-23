@@ -8,5 +8,11 @@ namespace ED_Razor_Test_01.Pages
         public void OnGet()
         {
         }
+
+        [ActionName("Trigger")]
+        public IActionResult Trigger(int a)
+        {
+            return NotFound(a);
+        }
     }
 }

@@ -1,0 +1,55 @@
+﻿@page
+@model ED_Razor_Test_01.Pages.SessionhanteringModel
+
+@* Kolla i Infomaterial/Startup.cs rad 18 och 35. Lägg till samma i din Startup.cs*@
+
+@* Nästa rad är vikigt!*@
+@using Microsoft.AspNetCore.Http;   
+@{
+    ViewData["Title"] = "Home page";
+
+    List<string> namnLista = new List<string>(); 
+
+
+    if (HttpContext.Session.Keys.Contains("allanamn")) { 
+        string temp = HttpContext.Session.GetString("allanamn"); 
+        namnLista = temp.Split(";").ToList<string>(); ;
+    }
+
+    if(Request.Method == "POST"){
+        if(Request.Form.Keys.Contains("nyttnamn")) {
+            string n = Request.Form["nyttnamn"]; 
+            namnLista.Add( n );
+            HttpContext.Session.SetString("allanamn", String.Join(";", namnLista));
+        }
+    }
+}
+
+<h2>Hello!</h2>
+<p></p>
+
+@{
+    if (namnLista.Count > 0)
+    {
+        <h2>Deltagare: </h2>
+        <ul>
+        @foreach (string s in namnLista)
+            {
+                <li>@s</li>
+            }
+        </ul>
+    } 
+    else {
+        <h3> Inga anmälda än!</h3>
+    }
+}
+<hr />
+<form action="" method="post">
+    <span>Registrerar dig: </span>
+    <input type="text" name="nyttnamn" />
+    <button type="submit">Lägg till</button>
+</form>
+
+
+
+

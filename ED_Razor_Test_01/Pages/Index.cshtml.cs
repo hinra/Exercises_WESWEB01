@@ -14,7 +14,9 @@ namespace ED_Razor_Test_01.Pages
 
         public void OnGet()
         {
-
+            RedirectToAction("Calclator");
         }
+
+        
     }
 }
