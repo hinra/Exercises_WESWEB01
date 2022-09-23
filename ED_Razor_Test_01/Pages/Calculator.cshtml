@@ -1,0 +1,115 @@
+﻿@page
+@model ED_Razor_Test_01.Pages.CalculatorModel
+@{
+	
+
+	if (HttpContext.Session.GetString("Counter") != null)
+	{
+		//count = HttpContext.Session.GetString("Counter");
+	}
+	
+
+}
+<style>
+	.simpleform {
+		width: 400px;
+		margin: 20px auto; 
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		
+	}
+
+	.simpleform label {
+		padding: 20px 10px; 
+	}
+
+	.simpleform input {
+		margin: 15px auto; 
+	}
+
+	.error-msg {
+		width: 400px;
+		margin: 20px auto;
+		border: 2px dotted red;
+		background-color: lightcoral;
+		color: darkred; 
+		 
+	}
+
+	.show {
+		display: block;
+	}
+
+	.hidden {
+		display: none; 
+	}
+</style>
+
+
+<h1>Miniräknare</h1>
+<div class="error-msg">Felmeddelanden:</div>
+<form action="" method="post" class="simpleform">
+	
+	<label for="tal1">TAL 1:</label>
+	<input type="text" id="school" name="tal1" value="0" />
+	
+	<label for="tal2">TAL 2:</label>
+	<input type="text" id="tal2" name="tal2" value="0" />
+	<div></div>
+	<select name="operation">
+		<option value="plus">plus (+)</option>
+		<option value="minus">minus (-)</option>
+		<option value="multi">gånger (*)</option>
+		<option value="divi">delar (/)</option>
+		<option value="sin">sinus(tal1)</option>
+		<option value="cos">cosinus(tal1)</option>
+		<option value="tan">tangens(tal1)</option>
+	</select>
+	<div></div>
+	<div>
+
+		<input type="radio" name="vinkeltyp" value="RAD" checked="checked" /> Radian
+	<input type="radio" name="vinkeltyp" value="DEG" /> Vinkel	
+	</div>
+	<input type="submit" value="Räkna nu!" />
+</form>
+<hr/>
+
+@{
+
+
+
+	if (Request.Method == "GET")
+	{
+	<p>Fyll formuläret!</p>
+	}
+
+	if (Request.Method == "POST")
+	{
+		List<string> variabler = Request.Form.Keys.ToList<string>();
+
+	HttpContext.Session.SetString("a", "b"); 
+
+
+		double  tal1 = double.Parse( Request.Form["tal1"]);
+		double tal2 = double.Parse(Request.Form["tal2"]);
+		string operation = Request.Form["operation"];
+
+		double vinkel = tal1; 
+		if(Request.Form["vinkeltyp"] == "DEG")  { vinkel = vinkel * Math.PI / 180; }
+
+		double res = 0; 
+
+		switch (operation) {
+			case "plus": res = tal1 + tal2; break;
+			case "minus": res = tal1 - tal2; break;
+			case "multi": res = tal1 * tal2; break;
+			case "divi": res = tal1 / tal2; break;
+			case "sin": res = Math.Sin(tal1); break;
+			case "cos": res = Math.Cos(tal1); break;
+			case "tan": res = Math.Tan(tal1); break;
+		}
+
+	<h2> Resultat: @res</h2>
+	}
+}

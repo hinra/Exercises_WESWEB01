@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ED_Razor_Test_01.Pages
+namespace WebApplication2.Pages
 {
     public class IndexModel : PageModel
     {
@@ -14,9 +19,7 @@ namespace ED_Razor_Test_01.Pages
 
         public void OnGet()
         {
-            RedirectToAction("Calclator");
-        }
 
-        
+        }
     }
 }
