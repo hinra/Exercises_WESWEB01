@@ -1,0 +1,123 @@
+﻿@page
+@using Microsoft.AspNetCore.Http;
+@model ED_Razor_Test_01.Pages.CalculatorModel
+@{
+    //Globala variabler ( = kan användas på hela sidan)
+    double res = 0;
+    List<string> Historia = new List<string>();
+    string classForError = "hidden";
+
+	
+	if (Request.Method == "POST")
+	{
+		
+
+		if (HttpContext.Session.Keys.Contains("allanamn"))
+		{
+			string temp = HttpContext.Session.GetString("allanamn");
+			Historia = temp.Split(";").ToList<string>(); ;
+		}
+
+		double tal1 = double.Parse(Request.Form["tal1"]);
+		double tal2 = double.Parse(Request.Form["tal2"]);
+		string operation = Request.Form["operation"];
+
+		double vinkel = tal1;
+		if (Request.Form["vinkeltyp"] == "DEG") { vinkel = vinkel * Math.PI / 180; }
+
+		switch (operation)
+		{
+			case "plus": res = tal1 + tal2; break;
+			case "minus": res = tal1 - tal2; break;
+			case "multi": res = tal1 * tal2; break;
+			case "divi": res = tal1 / tal2; break;
+			case "sin": res = Math.Sin(tal1); break;
+			case "cos": res = Math.Cos(tal1); break;
+			case "tan": res = Math.Tan(tal1); break;
+		}
+
+		Historia.Add(res.ToString() );
+		HttpContext.Session.SetString("allanamn", String.Join(";", Historia));
+	}
+}
+<style>
+	.simpleform {
+		width: 400px;
+		margin: 20px auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		background-color: lightblue; 
+	}
+
+		.simpleform label {
+			padding: 20px 10px;
+		}
+
+		.simpleform input {
+			margin: 15px auto;
+		}
+
+	.error-msg {
+		width: 400px;
+		margin: 20px auto;
+		border: 2px dotted red;
+		background-color: lightcoral;
+		color: darkred ;
+	}
+	
+	.hidden {
+		display: none;
+	}
+
+	.centrum { 
+		margin: 5px auto; 
+		background-color: lightblue;
+		border: 2px solid navy; 
+		width: 440px; 
+	}
+</style>
+
+
+<h1 class="centrum">Miniräknare on @Model.TheMethod</h1>
+<div class="@classForError">Felmeddelanden: Felaktig inmatning !!!</div>
+<form action="" method="post" class="simpleform">
+
+	<label asp-for="tal1">TAL 1:</label>
+	<span asp-validation-for="tal1" class="text-danger"></span>
+	<input type="text" asp-for="tal1" name="tal1" value="0" />
+
+	<label asp-for="tal2">TAL 2:</label>
+	<input type="text" asp-for="tal2" name="tal2" value="0" />
+	<div></div>
+	<select name="operation">
+		<option value="plus">plus (+)</option>
+		<option value="minus">minus (-)</option>
+		<option value="multi">gånger (*)</option>
+		<option value="divi">delar (/)</option>
+		<option value="sin">sinus(tal1)</option>
+		<option value="cos">cosinus(tal1)</option>
+		<option value="tan">tangens(tal1)</option>
+	</select>
+	<div></div>
+	<div>
+
+		<input type="radio" name="vinkeltyp" value="RAD" checked="checked" /> Radian
+		<input type="radio" name="vinkeltyp" value="DEG" /> Vinkel
+	</div>
+	<input type="submit" value="Räkna nu!" />
+</form>
+<hr />
+<h2> Resultat: @res</h2>
+<hr>
+<ul>
+	@foreach (string hist in Historia)
+	{
+		<li>@hist</li>
+	}
+</ul>
+<div>@Partial("Regards")</div>
+
+
+
+
+

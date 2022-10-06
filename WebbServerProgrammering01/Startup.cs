@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication2
+namespace WebbServerProgrammering01
 {
     public class Startup
     {
@@ -23,6 +24,7 @@ namespace WebApplication2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
             services.AddRazorPages();
         }
 
@@ -40,6 +42,7 @@ namespace WebApplication2
                 app.UseHsts();
             }
 
+            app.UseSession(); 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -47,8 +50,7 @@ namespace WebApplication2
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
+            app.UseEndpoints(endpoints =>     {
                 endpoints.MapRazorPages();
             });
         }

@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ED_Razor_Test_01", "ED_Razor_Test_01\ED_Razor_Test_01.csproj", "{820531D3-A510-4B6B-BA6D-0D066BE531D5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebbServerProgrammering01", "WebbServerProgrammering01\WebbServerProgrammering01.csproj", "{131A299E-DD82-4A06-A422-65E53CD533FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmKlasser", "OmKlasser\OmKlasser.csproj", "{215757BD-892E-4B22-A93C-D3952E7DCAC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{820531D3-A510-4B6B-BA6D-0D066BE531D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{820531D3-A510-4B6B-BA6D-0D066BE531D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{820531D3-A510-4B6B-BA6D-0D066BE531D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{131A299E-DD82-4A06-A422-65E53CD533FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{131A299E-DD82-4A06-A422-65E53CD533FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{131A299E-DD82-4A06-A422-65E53CD533FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{131A299E-DD82-4A06-A422-65E53CD533FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{215757BD-892E-4B22-A93C-D3952E7DCAC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{215757BD-892E-4B22-A93C-D3952E7DCAC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{215757BD-892E-4B22-A93C-D3952E7DCAC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{215757BD-892E-4B22-A93C-D3952E7DCAC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
