@@ -19,6 +19,22 @@ namespace OmKlasser
        public  List<string> items;
 
 
+
+        public string TilltalLocal()
+        {
+            string svar = "ej definerad";
+
+            switch(language)
+            {
+                case "de": svar = "Guten Morgen " + realname; break;
+                case "se": svar = "Välkommen " + realname; break;
+                case "es": svar = "Holá " + realname; break;
+                default: svar = "Hello " + realname; break;
+            }
+            return svar; 
+        }
+
+
         public Kund(string uname)
         {
             // Kod som kollar tillgänglighet.

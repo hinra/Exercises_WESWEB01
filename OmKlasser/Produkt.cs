@@ -10,6 +10,8 @@ namespace OmKlasser
         public string beteckning, tillverkare, kategori;
         public double pris, vikt;
 
+
+
         public double PrisMedMoms(double moms) { 
         return pris* (1+ moms); 
             }
