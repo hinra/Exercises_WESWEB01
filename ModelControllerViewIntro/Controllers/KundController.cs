@@ -6,6 +6,8 @@ namespace ModelControllerViewIntro.Controllers
 {
     public class KundController : Controller
     {
+        
+
         public IActionResult Index()
         {
             return View(); 
@@ -13,10 +15,16 @@ namespace ModelControllerViewIntro.Controllers
 
         public IActionResult Detaljer()
         {
-            Kund k = new Kund() { realname = "Jon Köpingsson",
-                            username = "kopjo" };
+            // någon process som ta fram rätt kund.
+            Kund k = new Kund()
+            {
+                realname = "Jon Köpingsson",
+                username = "kopjo"
+            };
             return View(k);
         }
+
+       
 
         public IActionResult AllaKunder()
         {
