@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModelControllerViewIntro.Models;
 using System.Collections.Generic;
+using ModelControllerViewIntro.Models; 
 
 namespace ModelControllerViewIntro.Controllers
 {
@@ -24,7 +25,51 @@ namespace ModelControllerViewIntro.Controllers
             return View(k);
         }
 
-       
+        public ActionResult NyKund()
+        {
+            ViewBag.aktuellKund = new Kund() {
+                        realname = "Magnus Erkenhed",
+                        username = "erkma" };
+
+            ViewBag.Message = "Hello World!"; 
+
+            return View(); 
+        }
+
+
+            [HttpPost]
+        public ActionResult SparaNyKund(string username, string realname, string language)
+        {           
+               // gör något med värden
+
+                return View("Index"); // Leda fel om det inte finns Kund/Index.cshtml        
+        }
+        
+        
+        [HttpPost]
+        public ActionResult SparaNyKundObjekt(Kund inkommandeK)
+        {
+            if (ModelState.IsValid)
+            {
+                Kund nyK = new Kund()
+                {
+                    username = inkommandeK.username,
+                    realname = inkommandeK.realname,
+                    language = inkommandeK.language
+                };
+
+                //Går något med kunden, tex spara i DB
+
+
+                return View("Index");
+            }
+            else
+            {
+                return View("Index2");
+            }
+            
+        }
+
 
         public IActionResult AllaKunder()
         {

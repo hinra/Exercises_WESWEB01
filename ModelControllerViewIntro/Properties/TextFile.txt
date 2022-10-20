@@ -1,0 +1,25 @@
+﻿Handledning MVC
+
+Lägga upp ny sida med Controller och en Action
+
+Fundera först på om du behöver en ny Controller eller ska en befintlig utökas?
+
+Ny Controller: 
+Högerklick på mappen 'Controller', Add Controller. Namnet måste innehåller ordet Controller. 
+Tex HomeController.cs, CustomerController.cs, ProductController.cs
+Unvik ÖÄÅ. 
+
+Ny Action: 
+I Controllern ska finnas en metod med motsvarade namn. Är action tex 'Delete' 
+ska det finnas metoden 
+
+ public IActionResult Delete()
+        {
+        //Kod som gör något
+
+        return View(); 
+
+        }
+
+
+

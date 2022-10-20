@@ -1,0 +1,21 @@
+﻿@model ModelControllerViewIntro.Models.Kund
+
+
+
+<h1>NyKund</h1>
+
+<div>
+    <h4>Kund @ViewBag.aktuellKund.realname</h4>
+    <h3>Meddelande: @ViewBag.Message</h3>
+    <form action="SparaNyKund" method="POST">
+        <label>Namn</label><input type="text" name="realname" />
+        <label>Användarnamn</label><input type="text" name="username" />
+        <label>Språk</label><input type="text" name="language" />
+        <button type="submit">Skicka!</button>
+
+    </form>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -7,3 +7,11 @@
         <h2>@k.realname, (@k.username) </h2>
     }
 }
+
+
+@{
+    foreach(Kund k in Model){       
+        @Html.ActionLink("Visa Egenskaper för " + k.realname ,"ShowDetail","Kund", new {id = k.username})
+    <br/> 
+    }
+}
