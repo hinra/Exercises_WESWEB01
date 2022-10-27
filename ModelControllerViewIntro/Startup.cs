@@ -25,6 +25,7 @@ namespace ModelControllerViewIntro
         {
             services.AddControllersWithViews();
             services.AddMvc();
+            services.AddSession(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +47,8 @@ namespace ModelControllerViewIntro
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession(); 
 
             app.UseEndpoints(endpoints =>
             {

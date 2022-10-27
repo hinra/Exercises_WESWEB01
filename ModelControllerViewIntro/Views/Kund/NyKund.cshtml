@@ -1,12 +1,12 @@
 ﻿@model ModelControllerViewIntro.Models.Kund
-
+@using Microsoft.AspNetCore.Http
 
 
 <h1>NyKund</h1>
 
 <div>
-    <h4>Kund @ViewBag.aktuellKund.realname</h4>
-    <h3>Meddelande: @ViewBag.Message</h3>
+    <h4>Skapa ny kund</h4>
+    <h3></h3>
     <form action="SparaNyKund" method="POST">
         <label>Namn</label><input type="text" name="realname" />
         <label>Användarnamn</label><input type="text" name="username" />
@@ -15,7 +15,9 @@
 
     </form>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    @if(ViewBag.Message != null){
+    <h4 style="border: 1px solid red; padding: 5px;">
+            Meddelande @ViewBag.Message
+           </h4>
+}

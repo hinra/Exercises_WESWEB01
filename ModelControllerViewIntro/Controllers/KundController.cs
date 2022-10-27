@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModelControllerViewIntro.Models;
 using System.Collections.Generic;
-using ModelControllerViewIntro.Models; 
+
+
 
 namespace ModelControllerViewIntro.Controllers
 {
@@ -11,8 +12,24 @@ namespace ModelControllerViewIntro.Controllers
 
         public IActionResult Index()
         {
-            return View(); 
+
+            return View(Kund.generateFakeKundList()); 
         }
+
+        public IActionResult RedigeraKund(int guid, int id)
+        {
+            
+            return View(Kund.generateFakeKund()); 
+        }
+
+        public IActionResult SparaKund()
+        {
+            ViewBag.Message = "Kunden 13321 har sparats";
+            return RedirectToAction("Index", "Kund");
+        }
+
+
+
 
         public IActionResult Detaljer()
         {
@@ -26,12 +43,7 @@ namespace ModelControllerViewIntro.Controllers
         }
 
         public ActionResult NyKund()
-        {
-            ViewBag.aktuellKund = new Kund() {
-                        realname = "Magnus Erkenhed",
-                        username = "erkma" };
-
-            ViewBag.Message = "Hello World!"; 
+        {         
 
             return View(); 
         }
@@ -39,15 +51,25 @@ namespace ModelControllerViewIntro.Controllers
 
             [HttpPost]
         public ActionResult SparaNyKund(string username, string realname, string language)
-        {           
-               // gör något med värden
+        {
+            string s = realname + " (" + username + ", lang = " + language + ")";
 
+            ViewBag.Message = s; 
+               
                 return View("Index"); // Leda fel om det inte finns Kund/Index.cshtml        
         }
-        
-        
-        [HttpPost]
-        public ActionResult SparaNyKundObjekt(Kund inkommandeK)
+
+
+        public ActionResult RedigeraAuto(int id, string type)
+        {
+            ViewBag.Message = "Inputparameter: id=" + id + ", type=" + type ; 
+
+            return View("Redigera"); 
+        }
+
+
+            [HttpPost]
+        public ActionResult RedigeraAuto(Kund inkommandeK)
         {
             if (ModelState.IsValid)
             {
@@ -65,31 +87,12 @@ namespace ModelControllerViewIntro.Controllers
             }
             else
             {
-                return View("Index2");
+                return View("Redigera");
             }
             
         }
 
 
-        public IActionResult AllaKunder()
-        {
-            List<Kund> allaK = new List<Kund>();
-            Kund k = new Kund()
-            {
-                realname = "Jon Köpingsson",
-                username = "kopjo"
-            };
-             
-            allaK.Add(k);
-
-            k = new Kund()
-            {
-                realname = "Hans Habo",
-                username = "habha"
-            };
-            allaK.Add(k);
-
-            return View(allaK);
-        }
+        
     }
 }

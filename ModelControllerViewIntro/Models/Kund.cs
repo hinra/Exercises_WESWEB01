@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ModelControllerViewIntro.Models
 {
@@ -8,29 +10,54 @@ namespace ModelControllerViewIntro.Models
         /// <summary>
         /// Ett unikt namn för varje kund. Borde innehåller 8 tecken. 
         /// </summary>
-        public string username;
-        public string password;
-        public string realname;
-        public string language;
+        
+        public string username { get; set; }
+        public string password { get; set; }
+        public string realname { get; set; }
+        public string language { get; set; }
 
         public int age;
         public int credit;
         public List<string> items;
 
 
+        // Statiska metod, anropas Kund.generateFakeKund();
 
-        public string TilltalLocal()
+        public static Kund generateFakeKund()
         {
-            string svar = "ej definerad";
-
-            switch (language)
+            return new Kund()
             {
-                case "de": svar = "Guten Morgen " + realname; break;
-                case "se": svar = "Välkommen " + realname; break;
-                case "es": svar = "Holá " + realname; break;
-                default: svar = "Hello " + realname; break;
-            }
-            return svar;
+                username = "lennart@gmail.se",
+                realname = "Lennart Johannsson",
+                language = "sv",
+                age = 45,
+                credit = 12300
+            };
+        }
+
+        public static List<Kund> generateFakeKundList()
+        {
+            List<Kund> list = new List<Kund>();
+            list.Add(generateFakeKund());
+
+            list.Add(new Kund()
+            {
+                username = "Johnny@flamingo.br",
+                realname = "Johnny G. Flamingo",
+                language = "es",
+                age = 25,
+                credit = 400
+            });
+
+            list.Add(new Kund()
+            {
+                username = "pjotr.Stakasvilli@georgien.go",
+                realname = "Pjotr Stakasvilli",
+                language = "go",
+                age = 17,
+                credit = 0
+            });
+            return list;    
         }
 
 
@@ -46,6 +73,21 @@ namespace ModelControllerViewIntro.Models
         public override string ToString()
         {
             return realname + "( " + username + " )";
+        }
+
+        // Äldre övningar
+        public string TilltalLocal()
+        {
+            string svar = "ej definerad";
+
+            switch (language)
+            {
+                case "de": svar = "Guten Morgen " + realname; break;
+                case "se": svar = "Välkommen " + realname; break;
+                case "es": svar = "Holá " + realname; break;
+                default: svar = "Hello " + realname; break;
+            }
+            return svar;
         }
 
     } // End of class Kund

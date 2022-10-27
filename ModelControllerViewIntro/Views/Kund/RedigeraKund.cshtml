@@ -1,0 +1,18 @@
+﻿@model Kund; 
+@{
+	
+}
+
+<div>
+    <h4>Skapa ny kund</h4>
+    <h3></h3>
+    <form action="SparaNyKund" method="POST">
+        <label>Namn</label><input type="text" name="realname" value="@Model.realname"/>
+        <label>Användarnamn</label><input type="text" name="username" value="@Model.username" />
+        <label>Språk</label><input type="text" name="language" value="@Model.language" />
+        <button type="submit">Skicka!</button>
+
+    </form>
+</div>
+
+
